@@ -1,0 +1,22 @@
+version: '3.8' # It's good practice to specify a version
+
+services:
+  payment-service-db:
+    container_name: payment-service-db
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - payment-service-network
+
+volumes:
+  sql_data:
+
+networks:
+  payment-service-network:
+    external: true
