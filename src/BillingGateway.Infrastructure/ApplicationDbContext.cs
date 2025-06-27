@@ -1,10 +1,9 @@
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using BillingGateway.Domain.Entities;
 
 namespace BillingGateway.Infrastructure;
 
-public class ApplicationDbContext : IdentityDbContext<Customer>
+public class ApplicationDbContext : DbContext
 {
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Payment> Payments { get; set; }

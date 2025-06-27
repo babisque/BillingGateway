@@ -7,7 +7,7 @@ namespace BillingGateway.Infrastructure.Repositories;
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {
     private readonly ApplicationDbContext _context;
-    private readonly DbSet<TEntity> _dbSet;
+    protected readonly DbSet<TEntity> _dbSet;
 
     protected Repository(ApplicationDbContext context)
     {

@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Identity;
-
 namespace BillingGateway.Domain.Entities;
 
-public class Customer : IdentityUser
+public class Customer
 {
+    public Guid Id { get; set; }
     public string FullName { get; set; }
+    public string Email { get; set; }
     public string PaymentGatewayCustomerId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 }

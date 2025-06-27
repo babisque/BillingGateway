@@ -1,5 +1,3 @@
-using BillingGateway.Domain.Enums;
-
 namespace BillingGateway.Domain.Entities;
 
 public class Plan
