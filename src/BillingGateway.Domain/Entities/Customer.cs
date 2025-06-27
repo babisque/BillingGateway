@@ -7,4 +7,5 @@ public class Customer
     public string Email { get; set; }
     public string PaymentGatewayCustomerId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
 }
