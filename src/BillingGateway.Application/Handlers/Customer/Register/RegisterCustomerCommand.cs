@@ -7,7 +7,7 @@ namespace BillingGateway.Application.Handlers.Customer.Register;
 public class RegisterCustomerCommand : IRequest<Result>
 {
     [Required]
-    public required string Name { get; set; }
+    public required string FullName { get; set; }
     [Required, EmailAddress]
     public required string Email { get; set; }
     [Required, MinLength(6)]
