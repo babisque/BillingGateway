@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using BillingGateway.Application.Handlers.Customer;
+using BillingGateway.Application.Handlers.Customer.Register;
 
 namespace BillingGateway.API.Controllers;
 

@@ -1,10 +1,9 @@
 using AutoMapper;
+using BillingGateway.Domain.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using BillingGateway.Domain.Entities;
-using BillingGateway.Domain.Shared;
 
-namespace BillingGateway.Application.Handlers.Customer;
+namespace BillingGateway.Application.Handlers.Customer.Register;
 
 public class RegisterCustomerHandler(IMapper mapper, UserManager<Domain.Entities.Customer> userManager) 
     : IRequestHandler<RegisterCustomerCommand, Result>

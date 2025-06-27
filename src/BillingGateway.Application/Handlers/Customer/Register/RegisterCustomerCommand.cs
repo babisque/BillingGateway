@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using MediatR;
 using BillingGateway.Domain.Shared;
+using MediatR;
 
-namespace BillingGateway.Application.Handlers.Customer;
+namespace BillingGateway.Application.Handlers.Customer.Register;
 
 public class RegisterCustomerCommand : IRequest<Result>
 {

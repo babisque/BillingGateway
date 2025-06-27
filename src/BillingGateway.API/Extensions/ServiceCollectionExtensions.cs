@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using BillingGateway.Application.Handlers.Customer;
+using BillingGateway.Application.Handlers.Customer.Register;
 using BillingGateway.Application.Profiles;
 using BillingGateway.Application.Settings;
 using BillingGateway.Domain.Entities;
