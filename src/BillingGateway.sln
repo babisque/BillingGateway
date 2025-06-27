@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.API", "Payment.API\Payment.API.csproj", "{D1FFF5E2-C8E4-43E5-A01A-A3DF8CD5776D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingGateway.API", "BillingGateway.API\BillingGateway.API.csproj", "{D1FFF5E2-C8E4-43E5-A01A-A3DF8CD5776D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Application", "Payment.Application\Payment.Application.csproj", "{99B8105C-6DE4-4224-A637-6592FE5DA2BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingGateway.Application", "BillingGateway.Application\BillingGateway.Application.csproj", "{99B8105C-6DE4-4224-A637-6592FE5DA2BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Domain", "Payment.Domain\Payment.Domain.csproj", "{08DA9620-A517-4765-8FE4-15BB72EAAEFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingGateway.Domain", "BillingGateway.Domain\BillingGateway.Domain.csproj", "{08DA9620-A517-4765-8FE4-15BB72EAAEFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Infrastructure", "Payment.Infrastructure\Payment.Infrastructure.csproj", "{EE5AB93F-E60C-4E30-8C84-B569581AA28E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingGateway.Infrastructure", "BillingGateway.Infrastructure\BillingGateway.Infrastructure.csproj", "{EE5AB93F-E60C-4E30-8C84-B569581AA28E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

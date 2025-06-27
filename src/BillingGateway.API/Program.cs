@@ -1,4 +1,4 @@
-using Payment.API.Extensions;
+using BillingGateway.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

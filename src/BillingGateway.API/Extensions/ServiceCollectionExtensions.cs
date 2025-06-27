@@ -5,13 +5,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Payment.Application.Settings;
-using Payment.Domain.Entities;
-using Payment.Domain.Interfaces;
-using Payment.Infrastructure;
-using Payment.Infrastructure.Repositories;
+using BillingGateway.Application.Handlers.Customer;
+using BillingGateway.Application.Profiles;
+using BillingGateway.Application.Settings;
+using BillingGateway.Domain.Entities;
+using BillingGateway.Domain.Interfaces;
+using BillingGateway.Infrastructure;
+using BillingGateway.Infrastructure.Repositories;
 
-namespace Payment.API.Extensions;
+namespace BillingGateway.API.Extensions;
 
 [ExcludeFromCodeCoverage]
 public static class ServiceCollectionExtensions
@@ -23,7 +25,8 @@ public static class ServiceCollectionExtensions
             .AddIdentity()
             .AddCustomAuthentication(configuration)
             .AddRepositories()
-            .AddSwagger();
+            .AddSwagger()
+            .AddApplicationServices();
     }
     
     private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
@@ -36,7 +39,7 @@ public static class ServiceCollectionExtensions
     
     private static IServiceCollection AddIdentity(this IServiceCollection services)
     {
-        services.AddIdentity<ApplicationUser, IdentityRole>(opts => {
+        services.AddIdentity<Customer, IdentityRole>(opts => {
                 // identity configurations is here
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -120,7 +123,16 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    private static IServiceCollection AddApplicationServices(this IServiceCollection services) => services;
+    private static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(CustomerMapper).Assembly);
+        
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(RegisterCustomerHandler).Assembly));
+        
+        return services;
+    }
+    
     private static IServiceCollection AddCustomCors(this IServiceCollection services) => services;
     private static IServiceCollection ConfigureTokenLifespan(this IServiceCollection services, IConfiguration configuration) => services;
     private static IServiceCollection AddSingletons(this IServiceCollection services, IConfiguration configuration) => services;

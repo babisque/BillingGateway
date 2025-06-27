@@ -1,11 +1,16 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Payment.Domain.Entities;
+using BillingGateway.Domain.Entities;
 
-namespace Payment.Infrastructure;
+namespace BillingGateway.Infrastructure;
 
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+public class ApplicationDbContext : IdentityDbContext<Customer>
 {
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<Payment> Payments { get; set; }
+    public DbSet<Plan> Plans { get; set; }
+    public DbSet<Subscription> Subscriptions { get; set; }
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
         : base(options) { }
     

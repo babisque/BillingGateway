@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Payment.Domain\Payment.Domain.csproj" />
+      <ProjectReference Include="..\BillingGateway.Domain\BillingGateway.Domain.csproj" />
     </ItemGroup>
 
 </Project>

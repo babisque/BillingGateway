@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace Payment.Domain.Interfaces;
+namespace BillingGateway.Domain.Interfaces;
 
 public interface IRepository<TEntity> where TEntity : class
 {

@@ -1,4 +1,4 @@
-namespace Payment.Application.Settings;
+namespace BillingGateway.Application.Settings;
 
 public class JwtSettings
 {

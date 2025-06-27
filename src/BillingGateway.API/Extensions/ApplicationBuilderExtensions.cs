@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.HttpOverrides;
 
-namespace Payment.API.Extensions;
+namespace BillingGateway.API.Extensions;
 
 public static class ApplicationBuilderExtensions
 {
