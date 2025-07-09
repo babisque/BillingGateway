@@ -34,7 +34,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IPlanRepository, PlanRepository>();
-        
+        services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
         return services;
     }
     
