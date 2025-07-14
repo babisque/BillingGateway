@@ -46,16 +46,6 @@ public static class ServiceCollectionExtensions
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "SuaGyn API", Version = "v1" });
-
-            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            {
-                Description = "Insert your JWT Bearer token here. Example: `Bearer {your_token}`",
-                Name = "Authorization",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http, 
-                BearerFormat = "JWT"
-            });
-
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
