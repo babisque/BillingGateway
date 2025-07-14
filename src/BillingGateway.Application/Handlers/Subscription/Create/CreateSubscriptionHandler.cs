@@ -1,11 +1,18 @@
 using AutoMapper;
+using BillingGateway.Application.Contracts;
 using BillingGateway.Domain.Interfaces;
 using BillingGateway.Domain.Shared;
+using MassTransit;
 using MediatR;
 
 namespace BillingGateway.Application.Handlers.Subscription.Create;
 
-public class CreateSubscriptionHandler(ICustomerRepository customerRepository, IPlanRepository planRepository, IMapper mapper, ISubscriptionRepository subscriptionRepository) 
+public class CreateSubscriptionHandler(
+    ICustomerRepository customerRepository,
+    IPlanRepository planRepository,
+    IMapper mapper,
+    ISubscriptionRepository subscriptionRepository,
+    IPublishEndpoint publishEndpoint)
     : IRequestHandler<CreateSubscriptionCommand, Result>
 {
     public async Task<Result> Handle(CreateSubscriptionCommand req, CancellationToken cancellationToken)
@@ -23,16 +30,19 @@ public class CreateSubscriptionHandler(ICustomerRepository customerRepository, I
             var error = new Error("PlanNotFound", "The specified plan does not exist or is not active.");
             return Result.Failure(error);
         }
-        
+
         var subscription = mapper.Map<Domain.Entities.Subscription>(req);
         await subscriptionRepository.AddAsync(subscription);
-        
-        // TODO: create a webhook to notify the customer about the new subscription
-        // TODO: create a webhook to notify the plan owner about the new subscription
-        // TODO: create a webhook to notify the billing system about the new subscription
-        // TODO: create a webhook to notify the payment gateway about the new subscription
-        // TODO: create a webhook to realize the subscription in the payment gateway
-        
+        await subscriptionRepository.SaveChangesAsync();
+
+        await publishEndpoint.Publish(new SubscriptionCreated
+        {
+            SubscriptionId = subscription.Id,
+            CustomerId = subscription.CustomerId,
+            PlanId = subscription.PlanId,
+            Timestamp = DateTime.UtcNow
+        }, cancellationToken);
+
         return Result.Success();
     }
 }

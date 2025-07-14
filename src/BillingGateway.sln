@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingGateway.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingGateway.Tests", "BillingGateway.Tests\BillingGateway.Tests.csproj", "{F8DCD6B4-B6AD-4355-9E0E-A7A4A7630002}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingGateway.Workers", "BillingGateway.Workers\BillingGateway.Workers.csproj", "{A2A18646-70EB-4C7C-A409-0DD1E1FD91E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{F8DCD6B4-B6AD-4355-9E0E-A7A4A7630002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8DCD6B4-B6AD-4355-9E0E-A7A4A7630002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8DCD6B4-B6AD-4355-9E0E-A7A4A7630002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A18646-70EB-4C7C-A409-0DD1E1FD91E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A18646-70EB-4C7C-A409-0DD1E1FD91E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A18646-70EB-4C7C-A409-0DD1E1FD91E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A18646-70EB-4C7C-A409-0DD1E1FD91E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

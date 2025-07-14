@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-BillingGateway.Workers-05cea54c-9936-4aab-9ac1-8b24d3caeb63</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.1" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="MassTransit.Abstractions">
+        <HintPath>..\..\..\..\..\.nuget\packages\masstransit.abstractions\8.5.1\lib\net9.0\MassTransit.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BillingGateway.Application\BillingGateway.Application.csproj" />
+      <ProjectReference Include="..\BillingGateway.Domain\BillingGateway.Domain.csproj" />
+      <ProjectReference Include="..\BillingGateway.Infrastructure\BillingGateway.Infrastructure.csproj" />
+    </ItemGroup>
+</Project>
