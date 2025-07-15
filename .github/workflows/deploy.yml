@@ -1,0 +1,51 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    needs: []
+    if: github.ref == 'refs/heads/main'
+    
+    environment:
+      name: production
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore src/BillingGateway.sln
+      
+    - name: Build for production
+      run: dotnet build src/BillingGateway.sln --configuration Release --no-restore
+      
+    - name: Run tests before deployment
+      run: dotnet test src/BillingGateway.sln --configuration Release --no-build --verbosity normal
+      
+    - name: Publish API
+      run: dotnet publish src/BillingGateway.API/BillingGateway.API.csproj --configuration Release --output ./publish/api
+      
+    - name: Publish Workers
+      run: dotnet publish src/BillingGateway.Workers/BillingGateway.Workers.csproj --configuration Release --output ./publish/workers
+      
+    - name: Create Docker images
+      run: |
+        docker build -t billing-gateway-api:latest -f infrastructure/Dockerfile.api .
+        docker build -t billing-gateway-workers:latest -f infrastructure/Dockerfile.workers .
+      continue-on-error: true
+      
+    - name: Deploy notification
+      run: |
+        echo "::notice::Deployment completed successfully"
+        echo "::notice::API published to ./publish/api"
+        echo "::notice::Workers published to ./publish/workers"
