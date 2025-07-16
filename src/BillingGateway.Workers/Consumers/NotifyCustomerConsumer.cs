@@ -1,16 +1,23 @@
-using System.Threading.Tasks;
+using BillingGateway.Application.Contracts;
+using BillingGateway.Application.Interfaces.Services;
+using BillingGateway.Domain.Interfaces;
+using MassTransit;
 
 namespace BillingGateway.Workers.Consumers
 {
-    // TODO: create a webhook to notify the customer about the new subscription
-    public class NotifyCustomerConsumer
+    public class NotifyCustomerConsumer(IEmailService emailService, ICustomerRepository customerRepository)
+        : IConsumer<NotifyCustomer>
     {
-        public Task ConsumeAsync(object subscription)
+        public async Task Consume(ConsumeContext<NotifyCustomer> context)
         {
-            // TODO: Implement logic to send a webhook notification to the customer
-            // Example: Use an injected IWebhookService to send eventType: "SubscriptionCreatedForCustomer"
-            return Task.CompletedTask;
+            var customer = await customerRepository.GetByIdAsync(context.Message.CustomerId);
+            if (customer is not null)
+            {
+                const string subject = "Subscription Created";
+                var body =
+                    $"Dear {customer.FullName},\n\nYour subscription has been successfully created.\n\nThank you for choosing our service!";
+                await emailService.SendEmailAsync(customer.Email, subject, body);
+            }
         }
     }
 }
-
